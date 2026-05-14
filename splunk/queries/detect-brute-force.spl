@@ -1,0 +1,4 @@
+index=main sourcetype=WinEventLog:Security EventCode=4625 
+| bucket _time span=60s 
+| stats count by _time, Source_Network_Address, Account_Name 
+| where count > 5
