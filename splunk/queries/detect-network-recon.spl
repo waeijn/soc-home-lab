@@ -1,0 +1,4 @@
+index=main sourcetype=WinEventLog:Security EventCode=5156 
+| stats count by Source_Address, Destination_Port 
+| where count > 5 
+| sort -count
