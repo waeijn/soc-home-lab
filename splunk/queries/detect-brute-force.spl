@@ -1,4 +1,4 @@
-| index=main sourcetype=WinEventLog:Security (EventCode=4625 OR EventCode=4624)
+index=main sourcetype=WinEventLog:Security (EventCode=4625 OR EventCode=4624)
 | eval event_type=if(EventCode=4625, "FAILURE", "SUCCESS")
 | bucket _time span=60s
 | stats count(eval(event_type="FAILURE")) as failures, 
