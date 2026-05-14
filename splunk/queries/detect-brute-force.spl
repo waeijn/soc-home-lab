@@ -1,4 +1,7 @@
-index=main sourcetype=WinEventLog:Security EventCode=4625 
-| bucket _time span=60s 
-| stats count by _time, Source_Network_Address, Account_Name 
-| where count > 5
+| index=main sourcetype=WinEventLog:Security (EventCode=4625 OR EventCode=4624)
+| eval event_type=if(EventCode=4625, "FAILURE", "SUCCESS")
+| bucket _time span=60s
+| stats count(eval(event_type="FAILURE")) as failures, 
+        count(eval(event_type="SUCCESS")) as successes 
+        by _time, Source_Network_Address, Account_Name
+| where failures > 5
