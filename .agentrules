@@ -1,0 +1,82 @@
+# .agentrules — SOC Home Lab
+
+## Project Context
+
+This is a cybersecurity SOC home lab project built with VirtualBox, Splunk SIEM,
+Kali Linux, and Windows 10. It is a portfolio project for a CS undergraduate
+targeting SOC Analyst and Security Engineer roles.
+
+## Stack & Environment
+
+- SIEM: Splunk Enterprise 10.2.3 on Ubuntu Server 26.04 (192.168.56.10)
+- Attack Target: Windows 10 Pro (192.168.56.101)
+- Attacker: Kali Linux (192.168.56.102)
+- Network: VirtualBox Host-Only (192.168.56.0/24)
+- Language: Python 3 for automation scripts (Phase 4)
+- Query Language: SPL (Splunk Search Processing Language)
+
+## Repo Structure
+
+- docs/ — phase write-ups and cheatsheet
+- splunk/queries/ — .spl detection rule files
+- splunk/dashboards/ — exported dashboard XML
+- splunk/alerts/ — alert configurations
+- scripts/ — Python automation scripts (Phase 4)
+- attack-scenarios/ — markdown write-ups per attack
+- screenshots/ — evidence screenshots per phase
+
+## Coding Rules
+
+- Python scripts go in scripts/ only
+- SPL queries go in splunk/queries/ as .spl files, one file per detection rule
+- Never hardcode API keys or credentials — use config.py with environment variables
+- All scripts must include a docstring explaining what the script does
+- Follow PEP 8 for Python code style
+
+## Documentation Rules
+
+- Every phase has a corresponding markdown file in docs/
+- Every detection rule must include a comment explaining what it detects and why
+- Screenshots must be taken at every verification checkpoint and saved to screenshots/phaseN/
+- Attack scenarios must be documented in attack-scenarios/ as markdown
+
+## Git Rules
+
+- Branch naming: phase-N-description (e.g. phase-3-sysmon)
+- Commit message format: conventional commits
+  - feat: new detection rule or script
+  - fix: bug fix or config correction
+  - docs: documentation updates
+  - chore: repo maintenance
+- Never commit credentials, API keys, or VM files
+- Merge to main only when phase is fully verified and documented
+
+## Detection Rule Rules
+
+- Every SPL query must be tested in Splunk before committing
+- Every detection rule must map to a MITRE ATT&CK technique ID
+- Include the MITRE technique ID as a comment at the top of each .spl file
+- Detection thresholds must be documented with reasoning
+
+## What NOT to Do
+
+- Do not modify VM configuration files directly — document changes in docs/
+- Do not push .vdi, .vbox, or any VM disk files to GitHub
+- Do not run attacks outside the Host-Only network (192.168.56.0/24)
+- Do not skip verification checkpoints before moving to the next task
+- Do not hardcode Splunk server IP in scripts — use config.py
+
+## Phase Progress
+
+- Phase 1: Complete — SIEM setup and log forwarding
+- Phase 2: In Progress — attack simulation and detection rules
+- Phase 3: Not started — Sysmon advanced logging
+- Phase 4: Not started — Python automation and VirusTotal API
+- Phase 5: Not started — Incident response (optional)
+
+## Key Credentials Reference
+
+- Splunk Web: http://192.168.56.10:8000
+- Splunk admin username: analyst
+- Windows target username: analyst
+- Kali username: kali

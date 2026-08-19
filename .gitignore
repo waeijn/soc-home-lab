@@ -1,0 +1,35 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Virtual Machine Files (CRITICAL for this project)
+*.vmdk
+*.vdi
+*.vbox
+*.vbox-prev
+*.ova
+*.ovf
+*.iso
+*.img
+*.qcow2
+
+# Python / Scripts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Secrets and Configuration
+.env
+secret.key
+config.local.py

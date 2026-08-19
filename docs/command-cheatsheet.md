@@ -10,6 +10,30 @@
 
 ---
 
+## Log in Credentials
+
+Ubuntu Server (splunk-server)
+
+Username: analyst
+Password: Analyst@2026!
+
+Splunk Web Interface (http://192.168.56.10:8000)
+
+Username: analyst
+Password: Analyst@2026!
+
+Windows 10 (win-target)
+
+Username: analyst
+Password: Analyst@2026!
+
+Kali Linux (kali-attacker)
+
+Username: kali
+Password: kali
+
+---
+
 ## Ubuntu / Splunk Server
 
 ### Splunk Management
