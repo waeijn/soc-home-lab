@@ -1,0 +1,12 @@
+/*
+MITRE ATT&CK Techniques: 
+- T1059.001 (Command and Scripting Interpreter: PowerShell)
+- T1087 (Account Discovery)
+
+Description: 
+Searches the raw log text for specific reconnaissance and execution binaries (powershell, whoami, net), 
+allowing visibility into the exact arguments passed to them when the Windows Splunk Add-on is not parsing CommandLine.
+*/
+
+index=* EventCode=4688 ("powershell" OR "whoami" OR "net")
+| table _time, host, Message

@@ -42,9 +42,6 @@ A cybersecurity SOC home lab environment built with VirtualBox, Splunk SIEM, Kal
 - **Network Restrictions:** All attack simulations are strictly confined to the `192.168.56.0/24` Host-Only network.
 - **Documentation:** For VM configurations and step-by-step setup details, please refer to the `docs/` directory.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ---
-*This repository is a demonstration of practical cybersecurity skills and is intended for educational and portfolio purposes only.*
+
+_This repository is a demonstration of practical cybersecurity skills and is intended for educational and portfolio purposes only._

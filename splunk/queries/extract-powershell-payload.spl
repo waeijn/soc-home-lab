@@ -1,0 +1,12 @@
+/*
+MITRE ATT&CK Techniques: 
+- T1059.001 (Command and Scripting Interpreter: PowerShell)
+
+Description: 
+Uses regular expressions to extract the command payload from the messy Message field on the fly,
+bypassing the need for pre-installed Splunk parsing add-ons. Useful for professional reporting and alerts.
+*/
+
+index=* EventCode=4104 ("whoami" OR "Get-LocalUser" OR "DownloadString" OR "EncodedCommand")
+| rex field=Message "(?s)text \(\d+ of \d+\):\s*(?<Script_Payload>.*?)\s*ScriptBlock ID"
+| table _time, host, Script_Payload

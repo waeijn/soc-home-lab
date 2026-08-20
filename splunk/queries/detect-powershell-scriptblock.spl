@@ -1,0 +1,13 @@
+/*
+MITRE ATT&CK Techniques: 
+- T1059.001 (Command and Scripting Interpreter: PowerShell)
+- T1027 (Obfuscated Files or Information - EncodedCommand)
+- T1105 (Ingress Tool Transfer - DownloadString)
+
+Description: 
+Captures de-obfuscated script content just before execution, hunting for reconnaissance commands, 
+payload downloads (DownloadString), and encoded execution (EncodedCommand).
+*/
+
+index=* EventCode=4104 ("whoami" OR "Get-LocalUser" OR "DownloadString" OR "EncodedCommand")
+| table _time, host, EventCode, Message
