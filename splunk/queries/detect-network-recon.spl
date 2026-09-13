@@ -1,4 +1,5 @@
-index=main sourcetype=WinEventLog:Security EventCode=5156 
-| stats count by Source_Address, Destination_Port 
-| where count > 5 
-| sort -count
+index=* sourcetype=WinEventLog:Security EventCode=5156
+| bucket _time span=60s
+| stats dc(Destination_Port) as ports_scanned, values(Destination_Port) as ports by _time, Source_Address
+| where ports_scanned > 5
+| sort -ports_scanned
