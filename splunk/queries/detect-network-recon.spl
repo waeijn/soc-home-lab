@@ -1,5 +1,15 @@
+/*
+MITRE ATT&CK: T1046 - Network Service Scanning
+Description: Detects network reconnaissance by counting distinct destination ports accessed by a single source within a 60-second window, while filtering out known noisy local and IPv6 addresses.
+*/
 index=* sourcetype=WinEventLog:Security EventCode=5156
 | bucket _time span=60s
 | stats dc(Destination_Port) as ports_scanned, values(Destination_Port) as ports by _time, Source_Address
-| where ports_scanned > 5
+| where ports_scanned > 3
+AND Source_Address != "10.0.2.15"
+AND Source_Address != "127.0.0.1"
+AND Source_Address != "192.168.56.101"
+AND Source_Address != "-"
+AND NOT match(Source_Address, "^::") 
+AND NOT match(Source_Address, "^fe80")
 | sort -ports_scanned
