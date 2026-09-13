@@ -37,6 +37,12 @@ A cybersecurity SOC home lab environment built with VirtualBox, Splunk SIEM, Kal
 - Each detection rule corresponds to a specific **MITRE ATT&CK** technique ID.
 - Detection thresholds and logic are documented alongside the rules to provide context and reasoning.
 
+## Lab Credentials
+
+- **Ubuntu Server / Splunk Web:** `analyst` / `Analyst@2026!`
+- **Windows 10 Target:** `analyst` / `Analyst@2026!`
+- **Kali Linux Attacker:** `kali` / `kali`
+
 ## Usage & Disclaimer
 
 - **Network Restrictions:** All attack simulations are strictly confined to the `192.168.56.0/24` Host-Only network.
