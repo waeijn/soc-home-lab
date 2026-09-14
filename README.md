@@ -26,8 +26,8 @@ A cybersecurity SOC home lab environment built with VirtualBox, Splunk SIEM, Kal
 ## Project Phases
 
 - [x] **Phase 1: Complete** — SIEM setup and log forwarding (Splunk Universal Forwarder).
-- [/] **Phase 2: In Progress** — Attack simulation and Splunk detection rule engineering.
-- [ ] **Phase 3: Not started** — Sysmon deployment and advanced logging configuration.
+- [x] **Phase 2: Complete** — Attack simulation and Splunk detection rule engineering.
+- [/] **Phase 3: In Progress** — Sysmon deployment and advanced logging configuration.
 - [ ] **Phase 4: Not started** — Python automation and VirusTotal API integration.
 - [ ] **Phase 5: Not started** — Incident response procedures (optional).
 
