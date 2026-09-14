@@ -1,3 +1,7 @@
+/*
+MITRE ATT&CK: T1110 - Brute Force
+Description: Detects RDP brute force attempts by looking for more than 5 failed logon attempts from a single source within a 60-second window. Includes successful logons to indicate if the brute force succeeded.
+*/
 index=main sourcetype=WinEventLog:Security (EventCode=4625 OR EventCode=4624)
 | eval event_type=if(EventCode=4625, "FAILURE", "SUCCESS")
 | bucket _time span=60s
