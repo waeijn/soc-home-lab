@@ -39,7 +39,8 @@ A cybersecurity SOC home lab environment built with VirtualBox, Splunk SIEM, Kal
 
 ## Lab Credentials
 
-- **Ubuntu Server / Splunk Web:** `analyst` / `Analyst@2026!`
+- **Splunk Web Interface:** [http://192.168.56.10:8000](http://192.168.56.10:8000)
+- **Ubuntu Server (SSH/Console):** `analyst` / `Analyst@2026!`
 - **Windows 10 Target:** `analyst` / `Analyst@2026!`
 - **Kali Linux Attacker:** `kali` / `kali`
 

@@ -1,0 +1,80 @@
+<dashboard version="1.1" theme="dark">
+  <label>SOC Incidents Overview</label>
+  <description>Phase 2 attack detection overview — recon, brute force, PowerShell</description>
+  <row>
+    <panel>
+      <table>
+        <title>Failed Logon Attempts</title>
+        <search>
+          <query>index=* sourcetype=WinEventLog:Security EventCode=4625
+| stats count by Source_Network_Address, Account_Name
+| sort -count</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Port Scan Activity</title>
+        <search>
+          <query>index=* sourcetype=WinEventLog:Security EventCode=5156
+| bucket _time span=60s
+| stats dc(Destination_Port) as ports_scanned, values(Destination_Port) as ports by _time, Source_Address
+| where ports_scanned &gt; 3
+AND Source_Address != "10.0.2.15"
+AND Source_Address != "127.0.0.1"
+AND Source_Address != "192.168.56.101"
+AND Source_Address != "-"
+AND NOT match(Source_Address, "^::")
+AND NOT match(Source_Address, "^fe80")
+| sort -ports_scanned</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Suspicious PowerShell Executions</title>
+        <search>
+          <query>index=* EventCode=4104
+("DownloadString" OR "IEX" OR "whoami" OR "EncodedCommand")
+| rex field=Message "(?s)text \(\d+ of \d+\):\s*(?&lt;Script_Payload&gt;.*?)\s*ScriptBlock ID"
+| table _time, host, Script_Payload
+| sort -_time</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Full Attack Timeline</title>
+        <search>
+          <query>index=* (EventCode=4625 OR EventCode=4688 OR EventCode=4104 OR EventCode=5156)
+| eval Attack_Type=case(
+    EventCode=4625, "Brute Force",
+    EventCode=5156, "Network Recon",
+    EventCode=4104, "PowerShell Execution",
+    EventCode=4688, "Process Creation")
+| table _time, host, Attack_Type, EventCode
+| sort -_time
+| head 50</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>
